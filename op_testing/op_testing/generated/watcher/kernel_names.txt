@@ -1,6 +1,0 @@
-0: blank
-1: tt_metal/impl/dispatch/kernels/cq_prefetch.cpp
-2: tt_metal/impl/dispatch/kernels/cq_dispatch.cpp
-3: tt_metal/impl/dispatch/kernels/cq_dispatch_subordinate.cpp
-4: ttnn/cpp/ttnn/operations/data_movement/reshape_view/device/device/dataflow/reader_reshape_tiled.cpp
-5: ttnn/cpp/ttnn/operations/data_movement/reshape_view/device/device/dataflow/writer_reshape_tiled.cpp

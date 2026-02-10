@@ -1,8 +1,0 @@
-0: blank
-1: tt_metal/impl/dispatch/kernels/cq_prefetch.cpp
-2: tt_metal/impl/dispatch/kernels/cq_dispatch.cpp
-3: tt_metal/impl/dispatch/kernels/cq_dispatch_subordinate.cpp
-4: ttnn/cpp/ttnn/operations/data_movement/reshape_view/device/device/dataflow/reader_reshape_tiled.cpp
-5: ttnn/cpp/ttnn/operations/data_movement/reshape_view/device/device/dataflow/writer_reshape_tiled.cpp
-6: ttnn/cpp/ttnn/operations/data_movement/sharded/device/kernels/dataflow/reader_unary_sharded_blocks_interleaved_start_id.cpp
-7: ttnn/cpp/ttnn/operations/data_movement/sharded/device/kernels/dataflow/writer_unary_sharded.cpp
