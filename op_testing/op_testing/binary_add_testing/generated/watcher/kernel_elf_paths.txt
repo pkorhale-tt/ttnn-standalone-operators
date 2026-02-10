@@ -1,0 +1,7 @@
+0: blank
+3: /home/pkorhale/.cache/tt-metal-cache/30a840c944/13649798066889801173/kernels/cq_dispatch_subordinate/14686831790583253962//ncrisc/ncrisc.elf
+2: /home/pkorhale/.cache/tt-metal-cache/30a840c944/13649798066889801173/kernels/cq_dispatch/969426100163953432//brisc/brisc.elf
+1: /home/pkorhale/.cache/tt-metal-cache/30a840c944/13649798066889801173/kernels/cq_prefetch/8234373949426160693//brisc/brisc.elf
+6: /home/pkorhale/.cache/tt-metal-cache/30a840c944/13649798066889801173/kernels/reader_interleaved_no_bcast/7266410947036331298//ncrisc/ncrisc.elf
+5: /home/pkorhale/.cache/tt-metal-cache/30a840c944/13649798066889801173/kernels/eltwise_binary_no_bcast/5893910143979363456//trisc0/trisc0.elf:/home/pkorhale/.cache/tt-metal-cache/30a840c944/13649798066889801173/kernels/eltwise_binary_no_bcast/5893910143979363456//trisc1/trisc1.elf:/home/pkorhale/.cache/tt-metal-cache/30a840c944/13649798066889801173/kernels/eltwise_binary_no_bcast/5893910143979363456//trisc2/trisc2.elf
+4: /home/pkorhale/.cache/tt-metal-cache/30a840c944/13649798066889801173/kernels/writer_interleaved_no_bcast/6011646681548896668//brisc/brisc.elf

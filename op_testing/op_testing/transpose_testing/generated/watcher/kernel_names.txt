@@ -1,0 +1,7 @@
+0: blank
+1: tt_metal/impl/dispatch/kernels/cq_prefetch.cpp
+2: tt_metal/impl/dispatch/kernels/cq_dispatch.cpp
+3: tt_metal/impl/dispatch/kernels/cq_dispatch_subordinate.cpp
+4: ttnn/cpp/ttnn/operations/data_movement/transpose/device/kernels/dataflow/reader_unary_transpose_wh_interleaved_start_id.cpp
+5: ttnn/cpp/ttnn/operations/eltwise/unary/device/kernels/dataflow/writer_unary_interleaved_start_id.cpp
+6: ttnn/cpp/ttnn/operations/data_movement/transpose/device/kernels/compute/transpose_wh.cpp

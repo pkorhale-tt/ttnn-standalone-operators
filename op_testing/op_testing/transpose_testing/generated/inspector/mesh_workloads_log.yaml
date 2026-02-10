@@ -1,0 +1,27 @@
+- mesh_workload_created:
+    mesh_workload_id: 0
+    timestamp_ns: 1770670373893100325
+- mesh_workload_add_program:
+    mesh_workload_id: 0
+    program_id: 1
+    timestamp_ns: 1770670373904547006
+    coordinates:
+      - [0, 0]
+- mesh_workload_set_metadata:
+    mesh_workload_id: 0
+    name: TransposeDeviceOperation
+    parameters: '[0]: Tensor(storage=DeviceStorage(),tensor_spec=TensorSpec(logical_shape=Shape([1, 1, 32, 100]),tensor_layout=TensorLayout(dtype=DataType::BFLOAT8_B,page_config=PageConfig(config=TilePageConfig(tile=Tile(tile_shape={32, 32},face_shape={16, 16},num_faces=4))),memory_config=MemoryConfig(memory_layout=TensorMemoryLayout::INTERLEAVED,buffer_type=BufferType::L1,shard_spec=std::nullopt,nd_shard_spec=std::nullopt,created_with_nd_shard_spec=0),alignment=Alignment([32, 128]))))'
+    timestamp_ns: 1770670373904596775
+- mesh_workload_set_program_binary_status:
+    mesh_workload_id: 0
+    mesh_id: 1
+    status: InFlight
+    timestamp_ns: 1770670374074364629
+- mesh_workload_set_program_binary_status:
+    mesh_workload_id: 0
+    mesh_id: 1
+    status: Committed
+    timestamp_ns: 1770670374074452799
+- mesh_workload_destroyed:
+    mesh_workload_id: 0
+    timestamp_ns: 1770670374076086706

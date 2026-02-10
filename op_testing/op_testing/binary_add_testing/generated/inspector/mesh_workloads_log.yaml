@@ -1,0 +1,147 @@
+- mesh_workload_created:
+    mesh_workload_id: 0
+    timestamp_ns: 1770676370333351231
+- mesh_workload_add_program:
+    mesh_workload_id: 0
+    program_id: 1
+    timestamp_ns: 1770676370340996790
+    coordinates:
+      - [0, 0]
+- mesh_workload_set_metadata:
+    mesh_workload_id: 0
+    name: BinaryNgDeviceOperation
+    parameters: '[0]: Tensor(storage=DeviceStorage(),tensor_spec=TensorSpec(logical_shape=Shape([1, 64, 32, 32]),tensor_layout=TensorLayout(dtype=DataType::BFLOAT16,page_config=PageConfig(config=TilePageConfig(tile=Tile(tile_shape={32, 32},face_shape={16, 16},num_faces=4))),memory_config=MemoryConfig(memory_layout=TensorMemoryLayout::INTERLEAVED,buffer_type=BufferType::DRAM,shard_spec=std::nullopt,nd_shard_spec=std::nullopt,created_with_nd_shard_spec=0),alignment=Alignment([32, 32])))), [1]: Tensor(storage=DeviceStorage(),tensor_spec=TensorSpec(logical_shape=Shape([1, 64, 32, 32]),tensor_layout=TensorLayout(dtype=DataType::BFLOAT16,page_config=PageConfig(config=TilePageConfig(tile=Tile(tile_shape={32, 32},face_shape={16, 16},num_faces=4))),memory_config=MemoryConfig(memory_layout=TensorMemoryLayout::INTERLEAVED,buffer_type=BufferType::DRAM,shard_spec=std::nullopt,nd_shard_spec=std::nullopt,created_with_nd_shard_spec=0),alignment=Alignment([32, 32]))))'
+    timestamp_ns: 1770676370341049490
+- mesh_workload_set_program_binary_status:
+    mesh_workload_id: 0
+    mesh_id: 1
+    status: InFlight
+    timestamp_ns: 1770676374424516617
+- mesh_workload_set_program_binary_status:
+    mesh_workload_id: 0
+    mesh_id: 1
+    status: Committed
+    timestamp_ns: 1770676374424644196
+- mesh_workload_set_program_binary_status:
+    mesh_workload_id: 0
+    mesh_id: 1
+    status: Committed
+    timestamp_ns: 1770676374424973053
+- mesh_workload_set_program_binary_status:
+    mesh_workload_id: 0
+    mesh_id: 1
+    status: Committed
+    timestamp_ns: 1770676374425016303
+- mesh_workload_set_program_binary_status:
+    mesh_workload_id: 0
+    mesh_id: 1
+    status: Committed
+    timestamp_ns: 1770676374425046972
+- mesh_workload_set_program_binary_status:
+    mesh_workload_id: 0
+    mesh_id: 1
+    status: Committed
+    timestamp_ns: 1770676374425078922
+- mesh_workload_set_program_binary_status:
+    mesh_workload_id: 0
+    mesh_id: 1
+    status: Committed
+    timestamp_ns: 1770676374425328060
+- mesh_workload_set_program_binary_status:
+    mesh_workload_id: 0
+    mesh_id: 1
+    status: Committed
+    timestamp_ns: 1770676374425358770
+- mesh_workload_set_program_binary_status:
+    mesh_workload_id: 0
+    mesh_id: 1
+    status: Committed
+    timestamp_ns: 1770676374425388550
+- mesh_workload_set_program_binary_status:
+    mesh_workload_id: 0
+    mesh_id: 1
+    status: Committed
+    timestamp_ns: 1770676374425416919
+- mesh_workload_set_program_binary_status:
+    mesh_workload_id: 0
+    mesh_id: 1
+    status: Committed
+    timestamp_ns: 1770676374425445249
+- mesh_workload_set_program_binary_status:
+    mesh_workload_id: 0
+    mesh_id: 1
+    status: Committed
+    timestamp_ns: 1770676374425473379
+- mesh_workload_set_program_binary_status:
+    mesh_workload_id: 0
+    mesh_id: 1
+    status: Committed
+    timestamp_ns: 1770676374425501529
+- mesh_workload_set_program_binary_status:
+    mesh_workload_id: 0
+    mesh_id: 1
+    status: Committed
+    timestamp_ns: 1770676374425529508
+- mesh_workload_set_program_binary_status:
+    mesh_workload_id: 0
+    mesh_id: 1
+    status: Committed
+    timestamp_ns: 1770676374425559338
+- mesh_workload_set_program_binary_status:
+    mesh_workload_id: 0
+    mesh_id: 1
+    status: Committed
+    timestamp_ns: 1770676374425589478
+- mesh_workload_set_program_binary_status:
+    mesh_workload_id: 0
+    mesh_id: 1
+    status: Committed
+    timestamp_ns: 1770676374425616838
+- mesh_workload_set_program_binary_status:
+    mesh_workload_id: 0
+    mesh_id: 1
+    status: Committed
+    timestamp_ns: 1770676374425644428
+- mesh_workload_set_program_binary_status:
+    mesh_workload_id: 0
+    mesh_id: 1
+    status: Committed
+    timestamp_ns: 1770676374425670517
+- mesh_workload_set_program_binary_status:
+    mesh_workload_id: 0
+    mesh_id: 1
+    status: Committed
+    timestamp_ns: 1770676374425698047
+- mesh_workload_set_program_binary_status:
+    mesh_workload_id: 0
+    mesh_id: 1
+    status: Committed
+    timestamp_ns: 1770676374425732177
+- mesh_workload_set_program_binary_status:
+    mesh_workload_id: 0
+    mesh_id: 1
+    status: Committed
+    timestamp_ns: 1770676374425759717
+- mesh_workload_set_program_binary_status:
+    mesh_workload_id: 0
+    mesh_id: 1
+    status: Committed
+    timestamp_ns: 1770676374425787016
+- mesh_workload_set_program_binary_status:
+    mesh_workload_id: 0
+    mesh_id: 1
+    status: Committed
+    timestamp_ns: 1770676374425813786
+- mesh_workload_set_program_binary_status:
+    mesh_workload_id: 0
+    mesh_id: 1
+    status: Committed
+    timestamp_ns: 1770676374425840496
+- mesh_workload_set_program_binary_status:
+    mesh_workload_id: 0
+    mesh_id: 1
+    status: Committed
+    timestamp_ns: 1770676374425867586
+- mesh_workload_destroyed:
+    mesh_workload_id: 0
+    timestamp_ns: 1770676375244312884

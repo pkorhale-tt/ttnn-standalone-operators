@@ -1,0 +1,60 @@
+- mesh_workload_created:
+    mesh_workload_id: 0
+    timestamp_ns: 1770672623250853039
+- mesh_workload_add_program:
+    mesh_workload_id: 0
+    program_id: 1
+    timestamp_ns: 1770672623260490022
+    coordinates:
+      - [0, 0]
+- mesh_workload_set_metadata:
+    mesh_workload_id: 0
+    name: ReshapeViewDeviceOperation
+    parameters: '[0]: Tensor(storage=DeviceStorage(),tensor_spec=TensorSpec(logical_shape=Shape([64, 32, 32]),tensor_layout=TensorLayout(dtype=DataType::BFLOAT16,page_config=PageConfig(config=TilePageConfig(tile=Tile(tile_shape={32, 32},face_shape={16, 16},num_faces=4))),memory_config=MemoryConfig(memory_layout=TensorMemoryLayout::INTERLEAVED,buffer_type=BufferType::DRAM,shard_spec=std::nullopt,nd_shard_spec=std::nullopt,created_with_nd_shard_spec=0),alignment=Alignment([32, 32]))))'
+    timestamp_ns: 1770672623260536772
+- mesh_workload_set_program_binary_status:
+    mesh_workload_id: 0
+    mesh_id: 1
+    status: InFlight
+    timestamp_ns: 1770672623362916975
+- mesh_workload_set_program_binary_status:
+    mesh_workload_id: 0
+    mesh_id: 1
+    status: Committed
+    timestamp_ns: 1770672623362987634
+- mesh_workload_created:
+    mesh_workload_id: 1
+    timestamp_ns: 1770672623363103213
+- mesh_workload_add_program:
+    mesh_workload_id: 1
+    program_id: 3
+    timestamp_ns: 1770672623366794474
+    coordinates:
+      - [0, 0]
+- mesh_workload_set_metadata:
+    mesh_workload_id: 1
+    name: InterleavedToShardedDeviceOperation
+    parameters: '[0]: Tensor(storage=DeviceStorage(),tensor_spec=TensorSpec(logical_shape=Shape([1, 1, 1024, 64]),tensor_layout=TensorLayout(dtype=DataType::BFLOAT16,page_config=PageConfig(config=TilePageConfig(tile=Tile(tile_shape={32, 32},face_shape={16, 16},num_faces=4))),memory_config=MemoryConfig(memory_layout=TensorMemoryLayout::INTERLEAVED,buffer_type=BufferType::DRAM,shard_spec=std::nullopt,nd_shard_spec=std::nullopt,created_with_nd_shard_spec=0),alignment=Alignment([32, 32])))), [1]: Tensor(storage=DeviceStorage(),tensor_spec=TensorSpec(logical_shape=Shape([1, 1, 1024, 64]),tensor_layout=TensorLayout(dtype=DataType::BFLOAT16,page_config=PageConfig(config=TilePageConfig(tile=Tile(tile_shape={32, 32},face_shape={16, 16},num_faces=4))),memory_config=MemoryConfig(memory_layout=TensorMemoryLayout::BLOCK_SHARDED,buffer_type=BufferType::L1,shard_spec=ShardSpec{grid=[{"start":{"x":0,"y":0},"end":{"x":1,"y":7}], shape=[128, 32], orientation=ShardOrientation::ROW_MAJOR},nd_shard_spec={"shard_shape":[128, 32],"grid":[{"start":{"x":0,"y":0},"end":{"x":1,"y":7}}],"orientation":"ShardOrientation::ROW_MAJOR","shard_distribution_strategy":"ShardDistributionStrategy::GRID_2D"},created_with_nd_shard_spec=0),alignment=Alignment([128, 32]))))'
+    timestamp_ns: 1770672623366832894
+- mesh_workload_set_program_binary_status:
+    mesh_workload_id: 1
+    mesh_id: 1
+    status: InFlight
+    timestamp_ns: 1770672623449162017
+- mesh_workload_set_program_binary_status:
+    mesh_workload_id: 1
+    mesh_id: 1
+    status: Committed
+    timestamp_ns: 1770672623449194567
+- mesh_workload_created:
+    mesh_workload_id: 2
+    timestamp_ns: 1770672623449896411
+- mesh_workload_destroyed:
+    mesh_workload_id: 2
+    timestamp_ns: 1770672623454690363
+- mesh_workload_destroyed:
+    mesh_workload_id: 1
+    timestamp_ns: 1770672623579452377
+- mesh_workload_destroyed:
+    mesh_workload_id: 0
+    timestamp_ns: 1770672623579486847

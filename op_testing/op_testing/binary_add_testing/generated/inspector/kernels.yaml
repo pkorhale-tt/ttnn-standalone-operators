@@ -1,0 +1,36 @@
+- kernel:
+    watcher_kernel_id: 3
+    name: cq_dispatch_subordinate
+    path: /home/pkorhale/.cache/tt-metal-cache/30a840c944/13649798066889801173/kernels/cq_dispatch_subordinate/14686831790583253962/
+    source: tt_metal/impl/dispatch/kernels/cq_dispatch_subordinate.cpp
+    program_id: 0
+- kernel:
+    watcher_kernel_id: 2
+    name: cq_dispatch
+    path: /home/pkorhale/.cache/tt-metal-cache/30a840c944/13649798066889801173/kernels/cq_dispatch/969426100163953432/
+    source: tt_metal/impl/dispatch/kernels/cq_dispatch.cpp
+    program_id: 0
+- kernel:
+    watcher_kernel_id: 1
+    name: cq_prefetch
+    path: /home/pkorhale/.cache/tt-metal-cache/30a840c944/13649798066889801173/kernels/cq_prefetch/8234373949426160693/
+    source: tt_metal/impl/dispatch/kernels/cq_prefetch.cpp
+    program_id: 0
+- kernel:
+    watcher_kernel_id: 5
+    name: eltwise_binary_no_bcast
+    path: /home/pkorhale/.cache/tt-metal-cache/30a840c944/13649798066889801173/kernels/eltwise_binary_no_bcast/5893910143979363456/
+    source: ttnn/cpp/ttnn/operations/eltwise/binary_ng/device/kernels/compute/eltwise_binary_no_bcast.cpp
+    program_id: 1
+- kernel:
+    watcher_kernel_id: 6
+    name: reader_interleaved_no_bcast
+    path: /home/pkorhale/.cache/tt-metal-cache/30a840c944/13649798066889801173/kernels/reader_interleaved_no_bcast/7266410947036331298/
+    source: ttnn/cpp/ttnn/operations/eltwise/binary_ng/device/kernels_ng/dataflow/reader_interleaved_no_bcast.cpp
+    program_id: 1
+- kernel:
+    watcher_kernel_id: 4
+    name: writer_interleaved_no_bcast
+    path: /home/pkorhale/.cache/tt-metal-cache/30a840c944/13649798066889801173/kernels/writer_interleaved_no_bcast/6011646681548896668/
+    source: ttnn/cpp/ttnn/operations/eltwise/binary_ng/device/kernels_ng/dataflow/writer_interleaved_no_bcast.cpp
+    program_id: 1
