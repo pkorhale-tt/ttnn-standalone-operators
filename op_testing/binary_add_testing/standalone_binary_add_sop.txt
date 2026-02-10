@@ -1,0 +1,43 @@
+File name:
+standalone_binary_add.py
+
+Basic command to run:
+
+python standalone_binary_add.py --batch 1 --c 64 --h 32 --w 32 --dtype fp16 --warmup 5 --iters 20 --device-id 0
+
+Argument meanings:
+
+--batch 1
+Sets the batch size N = 1. The input tensors will have 1 sample in the batch dimension.
+
+--c 64
+Sets the number of channels C = 64. This is the feature or activation channel dimension.
+
+--h 32
+Sets the height H = 32 of the input tensor. For images, this is the vertical spatial size; for generic tensors, it is simply the third dimension.
+
+--w 32
+Sets the width W = 32 of the input tensor. For images, this is the horizontal spatial size; for generic tensors, it is the fourth dimension.
+
+Together, --batch, --c, --h, and --w define the tensor shape:
+(N, C, H, W) = (1, 64, 32, 32).
+
+--dtype fp16
+Chooses the host data type for creating the random input tensors:
+- fp16: use torch.float16 on the host
+- bf16: use torch.bfloat16 on the host
+
+The script then converts these to ttnn.bfloat16 on the device. In this example, fp16 means host-side tensors are generated in float16.
+
+--warmup 5
+Runs the binary add operation 5 times before timing. These warmup iterations are not included in the performance measurement; they help stabilize performance (e.g., kernel JIT, caches).
+
+--iters 20
+Runs the binary add operation 20 times under timing. The script measures the total time for these 20 iterations and reports the average time per iteration.
+
+--device-id 0
+Selects TTNN device 0. If your system has multiple Tenstorrent devices, you can change this (e.g., --device-id 1) to run the benchmark on a different chip.
+
+Tracy profiling command (same arguments, wrapped with tracy):
+
+python -m tracy -p -r -v standalone_binary_add.py --batch 1 --c 64 --h 32 --w 32 --dtype fp16 --warmup 5 --iters 20 --device-id 0

@@ -1,0 +1,50 @@
+python standalone_reshape.py --batch 1 --c 64 --h 32 --w 32 --target-shape 1 1 2048 32 --dtype fp16 --warmup 5 --iters 10 --device-id 0
+
+--batch 1  
+Sets the batch size N = 1. The input tensor will have 1 sample in the batch dimension.
+
+--c 64  
+Sets the number of channels C = 64. This is the feature/activation channel dimension.
+
+--h 32  
+Sets the input height H = 32 (third dimension of the input tensor).
+
+--w 32  
+Sets the input width W = 32 (fourth dimension of the input tensor).
+
+Together, --batch, --c, --h, and --w define the input tensor shape:
+(N, C, H, W) = (1, 64, 32, 32)
+
+Total input elements = 1 * 64 * 32 * 32 = 65,536.
+
+--target-shape 1 1 2048 32  
+Defines the **new shape** the tensor will be reshaped into. Here:
+
+- Target shape = (1, 1, 2048, 32)  
+
+The script checks that the number of elements matches the input:
+1 * 1 * 2048 * 32 = 65,536 → same as input, so reshape is valid.
+
+You can change these numbers to any shape as long as:
+product(target-shape) == batch * c * h * w
+
+--dtype fp16  
+Chooses the host data type for creating the random input tensor:
+
+- fp16 → use torch.float16 on the host  
+- bf16 → use torch.bfloat16 on the host  
+
+The tensor is then converted to ttnn.bfloat16 on the device. In this example, fp16 means host-side data is float16 before conversion.
+
+--warmup 5  
+Runs the reshape operation 5 times before timing. These warmup iterations are not included in the performance measurement; they help stabilize performance.
+
+--iters 10  
+Runs the reshape operation 10 times under timing. The script measures the total time for these 10 runs and reports the average time per reshape, along with elements per second.
+
+--device-id 0  
+Selects TTNN device 0. Change this (for example, --device-id 1) to run the benchmark on another Tenstorrent device if available.
+
+Tracy profiling command (same arguments, wrapped with tracy):
+
+python -m tracy -p -r -v standalone_reshape.py --batch 1 --c 64 --h 32 --w 32 --target-shape 1 1 2048 32 --dtype fp16 --warmup 5 --iters 10 --device-id 0

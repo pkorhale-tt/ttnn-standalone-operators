@@ -1,0 +1,44 @@
+python standalone_conv2d.py --batch 1 --c-in 3 --c-out 4 --h 2 --w 2 --kernel-h 3 --kernel-w 3 --dtype bf16 --warmup 5 --iters 10 --device-id 0
+
+--batch 1  
+Sets the batch size N = 1. The input tensor will have 1 sample in the batch dimension.
+
+--c-in 3  
+Sets the number of input channels C_in = 3. For images this is typically RGB; for other convs it is the input feature channel count.
+
+--c-out 4  
+Sets the number of output channels C_out = 4. This is the number of convolution filters / output feature channels produced by the layer.
+
+--h 2  
+Sets the input height H = 2. This is the spatial height dimension of the input (number of rows).
+
+--w 2  
+Sets the input width W = 2. This is the spatial width dimension of the input (number of columns).
+
+Together, --batch, --c-in, --c-out, --h, and --w define the basic conv2d shape:
+Input BCHW = (N, C_in, H, W) = (1, 3, 2, 2)  
+Weights = (C_out, C_in, K_h, K_w) = (4, 3, 3, 3) once kernel size is set.
+
+--kernel-h 3  
+Sets the convolution kernel height K_h = 3.
+
+--kernel-w 3  
+Sets the convolution kernel width K_w = 3.
+
+These two options define the kernel size (3, 3). Combined with C_in and C_out, they determine the weight tensor shape (C_out, C_in, K_h, K_w).
+
+--dtype bf16  
+Sets the logical dtype label used for reporting (bf16 or fp16). In this script, tensors on the device are created as ttnn.bfloat16 regardless; this flag is mainly for consistency and FLOP accounting in logs.
+
+--warmup 5  
+Runs the conv2d forward pass 5 times before timing. These warmup iterations are not included in the performance measurement; they help stabilize performance (e.g., JIT, caches).
+
+--iters 10  
+Runs the conv2d forward pass 10 times under timing. The script measures total time for these 10 iterations and reports the average time per conv iteration, plus estimated GFLOPs and TFLOPs/s.
+
+--device-id 0  
+Selects TTNN device 0. If your system has multiple Tenstorrent devices, you can change this (for example, --device-id 1) to run the benchmark on a different chip.
+
+Tracy profiling command (same arguments, wrapped with tracy):
+
+python -m tracy -p -r -v standalone_conv2d.py --batch 1 --c-in 3 --c-out 4 --h 2 --w 2 --kernel-h 3 --kernel-w 3 --dtype bf16 --warmup 5 --iters 10 --device-id 0

@@ -1,0 +1,96 @@
+standalone_reshape_matmul_sop.txt
+=================================================================================================================
+Note: Why we combine matmul with reshape
+
+A pure ttnn.reshape is often implemented as a lightweight view/metadata change and may not register as a “real” device operation in the TT‑Metal profiler.
+Because of this, profiling tools like tracy + tt-perf-report can produce empty or header-only CSVs when you benchmark reshape alone.
+By combining matmul + reshape in one script, we:
+Still exercise and test ttnn.reshape in a realistic flow.
+Ensure that the profiler sees a heavy device op (the matmul), so ops_perf_results_*.csv and related reports contain useful performance data.
+In short: matmul is there to generate meaningful device-level profiling logs, while reshape is the operation under functional test in the same run.
+=================================================================================================================
+python standalone_reshape_matmul.py 1024 1024 1024 --target-shape 1 1 32768 32 --num-cores 16 --dtype bfloat8_b --fidelity HiFi4 --num-runs 10 --device-id 0
+
+File name  
+standalone_reshape_matmul.py
+
+Description  
+This script runs a TTNN matmul followed by a TTNN reshape in one benchmark. It:
+
+1. Creates A[M, K] and B[K, N] on device.  
+2. Computes C = A @ B (matmul).  
+3. Reshapes C to the user‑specified target shape.  
+4. Repeats matmul + reshape multiple times and reports average time and TFLOPs.
+
+Positional arguments (matrix dimensions)
+
+1024  
+This is M: number of rows of matrix A and rows of result C.
+
+1024  
+This is K: number of columns of A and rows of B.
+
+1024  
+This is N: number of columns of B and columns of result C.
+
+With these values:
+
+- A shape: [M, K] = [1024, 1024]  
+- B shape: [K, N] = [1024, 1024]  
+- C shape: [M, N] = [1024, 1024]  
+- Total elements in C: M * N = 1,048,576
+
+Optional arguments
+
+--target-shape 1 1 32768 32  
+Specifies the reshape target for C. The product of all target-shape dimensions must equal M * N.
+
+Here:  
+- Target shape = (1, 1, 32768, 32)  
+- Elements = 1 * 1 * 32768 * 32 = 1,048,576 → matches M * N = 1024 * 1024  
+
+You can change the numbers, but the element count must stay equal to M * N, otherwise the script will raise a ValueError.
+
+--num-cores 16  
+Limits the matmul to use at most 16 cores.
+
+- If the device has more than 16 cores, only 16 are used.  
+- If it has fewer than 16 cores, all available cores are used.  
+- If you omit this flag, the script uses all cores by default.
+
+This only affects the matmul; reshape is just a view operation.
+
+--dtype bfloat8_b  
+Sets the device data type for A and B.
+
+- bfloat8_b / bfp8 / bfp8_b → mapped to a BFP8/BFLOAT8 TTNN dtype  
+- bf16 / bfloat16        → mapped to ttnn.bfloat16  
+- fp32 / float32         → mapped to ttnn.float32  
+
+Host tensors are created in torch.bfloat16 and then converted to the chosen TTNN dtype on device. In this example, bfloat8_b means the matmul is performed in a BFP8 format on device.
+
+--fidelity HiFi4  
+Sets the math fidelity for the compute kernel using WormholeComputeKernelConfig.
+
+Allowed values:
+
+- LoFi  
+- HiFi2  
+- HiFi3  
+- HiFi4  
+
+HiFi4 selects the highest math fidelity mode.
+
+--num-runs 10  
+Runs the matmul + reshape sequence 10 times. The script:
+
+1. Optionally does warmup (if implemented)  
+2. Times these 10 runs  
+3. Reports average time per run and the achieved TFLOPs based on 2 * M * K * N FLOPs per matmul.
+
+--device-id 0  
+Opens TTNN device 0. If your system has multiple Tenstorrent devices, you can use a different ID (for example, --device-id 1) to run on another chip.
+
+Tracy profiling command (same arguments, wrapped with tracy)
+
+python -m tracy -p -r -v standalone_reshape_matmul.py 1024 1024 1024 --target-shape 1 1 32768 32 --num-cores 16 --dtype bfloat8_b --fidelity HiFi4 --num-runs 10 --device-id 0
