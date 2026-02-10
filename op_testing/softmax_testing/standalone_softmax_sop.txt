@@ -1,0 +1,73 @@
+python standalone_softmax.py --batch 1 --c 64 --h 1 --w 1024 --axis -1 --dtype fp16 --warmup 5 --iters 20 --device-id 0
+
+File name  
+standalone_softmax.py
+
+Description  
+This script benchmarks TTNN softmax on a 4D tensor `(N, C, H, W)`. It:
+
+1. Creates a random tensor on the host with shape `(N, C, H, W)`.  
+2. Moves it to the device in TILE layout.  
+3. Applies `ttnn.softmax` along a chosen axis.  
+4. Repeats softmax multiple times and reports average time and elements/s.
+
+Arguments
+
+--batch 1  
+Sets the batch size **N = 1**. The input tensor will have 1 sample in the batch dimension.
+
+--c 64  
+Sets the number of channels **C = 64**. This typically corresponds to feature/activation channels or number of heads, depending on how you map your data.
+
+--h 1  
+Sets the height **H = 1**. For a typical softmax over sequence or feature dimension, you can keep H = 1 and treat the tensor as `(N, C, 1, W)`.
+
+--w 1024  
+Sets the width **W = 1024**. With H = 1, this is the main dimension along which you might run softmax (e.g., sequence length or vector length).
+
+Together, --batch, --c, --h, and --w define the input tensor shape:
+
+- `(N, C, H, W) = (1, 64, 1, 1024)`  
+- Total elements = `1 * 64 * 1 * 1024 = 65,536`
+
+--axis -1  
+Chooses the axis for softmax.
+
+- Negative indices are converted to positive for a 4D tensor [N, C, H, W].  
+- axis = -1 → last dimension → W (index 3)  
+- So with `--axis -1`, softmax is applied along W (the width dimension) for each (N, C, H) position.
+
+Valid axis values:
+
+- 0 → N  
+- 1 → C  
+- 2 → H  
+- 3 → W  
+- Or negative equivalents: -4, -3, -2, -1
+
+In this example, axis = -1 means softmax over W (size 1024).
+
+--dtype fp16  
+Chooses the host data type for creating the random input tensor:
+
+- `fp16` → use `torch.float16` on the host  
+- `bf16` → use `torch.bfloat16` on the host  
+
+The script then converts this to `ttnn.bfloat16` on the device. In this example, `fp16` means host-side data is float16 before conversion.
+
+--warmup 5  
+Runs the softmax operation 5 times before timing. These warmup iterations are not included in the performance measurement; they help stabilize kernel performance (e.g., JIT, caches).
+
+--iters 20  
+Runs the softmax operation 20 times under timing. The script:
+
+- Measures total time for these 20 runs  
+- Computes the **average time per softmax**  
+- Reports elements per second (Gelems/s) using the total number of elements `N * C * H * W`.
+
+--device-id 0  
+Selects TTNN **device 0**. If your system has multiple Tenstorrent devices, you can change this (for example, `--device-id 1`) to run the benchmark on a different chip.
+
+Tracy profiling command (same arguments, wrapped with tracy)
+
+python -m tracy -p -r -v standalone_softmax.py --batch 1 --c 64 --h 1 --w 1024 --axis -1 --dtype fp16 --warmup 5 --iters 20 --device-id 0
