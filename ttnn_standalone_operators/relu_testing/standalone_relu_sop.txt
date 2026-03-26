@@ -1,0 +1,49 @@
+File name:
+standalone_relu.py
+
+Basic command to run:
+
+python standalone_relu.py --batch 1 --c 64 --h 32 --w 32 --dtype fp16 --warmup 5 --iters 20 --device-id 0
+
+Argument meanings:
+
+--batch 1
+Sets the batch size N = 1. The input tensor will have 1 sample in the batch dimension.
+
+--c 64
+Sets the number of channels C = 64. This is the feature or activation channel dimension.
+
+--h 32
+Sets the height H = 32 of the input tensor. For images, this is the vertical spatial size; for generic tensors, it is simply the third dimension.
+
+--w 32
+Sets the width W = 32 of the input tensor. For images, this is the horizontal spatial size; for generic tensors, it is the fourth dimension.
+
+Together, --batch, --c, --h, and --w define the tensor shape:
+(N, C, H, W) = (1, 64, 32, 32).
+
+--dtype fp16
+Chooses the host data type for creating the random input tensor:
+- fp16: use torch.float16 on the host
+- bf16: use torch.bfloat16 on the host
+
+The script then converts this to ttnn.bfloat16 on the device.
+
+--warmup 5
+Runs the ReLU operation 5 times before timing. These warmup iterations are not included in the performance measurement; they help stabilize performance.
+
+--iters 20
+Runs the ReLU operation 20 times under timing. The script measures total time and reports average time per iteration.
+
+--device-id 0
+Selects TTNN device 0.
+
+ReLU Operation:
+relu(x) = max(0, x)
+
+Memory behavior:
+Reads 1 tensor and writes 1 tensor → approx 2 × tensor size per iteration.
+
+Tracy profiling command:
+
+python -m tracy -p -r -v standalone_relu.py --batch 1 --c 64 --h 32 --w 32 --dtype fp16 --warmup 5 --iters 20 --device-id 0
