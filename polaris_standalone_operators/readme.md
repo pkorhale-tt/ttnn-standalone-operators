@@ -21,7 +21,9 @@ Each script defines a Polaris workload entry that can be mapped via
 -   `matmul`
 -   `reshape`
 -   `softmax`
--   `transpose`
+-   `relu`
+-   `gelu`
+-   `sigmoid`
 
 Each file exposes a workload function that Polaris can invoke.
 
